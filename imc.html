@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Estudo sobre a aplicação de Javascript em página HTML.">
+    <meta name="keywords" content="HTML, Javascript">
+    <meta name="author" content="Alexandre Rocha, @AllRox">
+    <title>Estudo: Cálculo de IMC com Javascript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="container" style="max-width: 600px">
+            <h1 class="text-center" style="font-size: 1.8rem; margin: 4rem 0 2rem 0; font-weight: 700;">Cálculo de IMC
+                com Javascript</h1>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="grupoDeInputs" class="form-label">Altura do indivíduo</label>
+                        <input type="text" class="form-control" id="altura" placeholder="Altura em metros. Ex: 1.80">
+                    </div>
+                    <div class="mb-3">
+                        <label for="grupoDeInputs" class="form-label">Peso do indivíduo</label>
+                        <input type="text" class="form-control" id="peso" placeholder="115">
+                    </div>
+
+                    <div class="alert alert-light" id="mensagem"
+                        style="padding: 0; font-weight: 600; font-size:1.2rem; color: #0d6efd;" role="alert">
+
+                    </div>
+
+                    <button type="button" id="btCalcular" class="btn btn-primary btn-lg">Calcular IMC</button>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            // Aplicação
+            var altura = document.getElementById("altura");
+            var peso = document.getElementById("peso");
+            var mensagem = document.getElementById("mensagem");
+
+            function faixaImc(imc) {
+                if (imc < 16.9) {
+                    return (" e está muito abaixo do peso.");
+                } else if (imc > 16.9 && imc <= 18.4) {
+                    return (" e está abaixo do peso.");
+                } else if (imc > 18.4 && imc <= 24.9) {
+                    return (" e está com peso normal.");
+                } else if (imc > 24.9 && imc <= 29.9) {
+                    return (" e está acima do peso.");
+                } else {
+                    return (" indicando obesidade, é recomendável atenção médica.");
+                }
+            }
+
+            function calcular() {
+
+                if (peso.value != 0 && altura.value != 0) {
+                    imc = peso.value / (altura.value * altura.value);
+                    mensagem.innerText = ("O indivíduo apresenta IMC igual a " + Math.round(imc) + faixaImc(imc));
+                    altura.focus();
+
+                } else {
+                    alert("Informe altura e peso!");
+                }
+            }
+
+            var button = document.getElementById("btCalcular");
+            btCalcular.onclick = calcular;
+
+        </script>
+    </div>
+
+</body>
+
+</html>
